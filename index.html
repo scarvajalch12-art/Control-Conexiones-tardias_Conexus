@@ -205,6 +205,7 @@ table.sheet .g-kristel.g-start{border-left:3px solid var(--g-kristel)}
 .ms-pop input{width:16px;height:16px;accent-color:var(--accent)}
 .ms-pop .ms-act{display:flex;gap:6px;padding:4px 4px 8px;border-bottom:1px solid var(--line);margin-bottom:4px}
 .ms-pop .ms-act button{font-size:12px;min-height:28px;padding:3px 9px;background:var(--surface);color:var(--fg);border-color:var(--line)}
+.ms-hint{margin:2px 6px 6px;font-size:11.5px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500}
 .ms-pop small{color:var(--muted);font-weight:400;margin-left:auto;font-size:11.5px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}
 /* ---------- piezas del control ---------- */
@@ -663,7 +664,8 @@ let R=null;
 let SEL_A=store.get('ctrlcx.selA2',null),SEL_C=store.get('ctrlcx.selC',null);
 let SEL_M=null,SEL_W=null;
 let SEL_D=null;
-function F(){return{from:$('#fFrom').value||M.sMin,to:$('#fTo').value||M.sMax,A:SEL_A,C:SEL_C,Mo:SEL_M,Wk:SEL_W,D:SEL_D}}
+const nz=v=>v&&v.length?v:null;
+function F(){return{from:$('#fFrom').value||M.sMin,to:$('#fTo').value||M.sMax,A:nz(SEL_A),C:nz(SEL_C),Mo:nz(SEL_M),Wk:nz(SEL_W),D:nz(SEL_D)}}
 const dOk=(d,f)=>d>=f.from&&d<=f.to&&(!f.D||f.D.includes(d))&&(!f.Mo||f.Mo.includes(d.slice(0,7)))&&(!f.Wk||f.Wk.includes(mondayOf(d)));
 function agentOk(a,f){if(!a)return false;return(f.A?f.A.includes(a.key):!!a.p)&&(!f.C||f.C.includes(a.acct))}
 const fDays=()=>{const f=F();return R.days.filter(d=>dOk(d.date,f)&&agentOk(d.a,f))};
@@ -678,13 +680,13 @@ const MONTH_L=['','enero','febrero','marzo','abril','mayo','junio','julio','agos
 const wkLabel=m=>{const e=addDays(m,6);return (m.slice(5,7)===e.slice(5,7)?(+m.slice(8))+'–'+(+e.slice(8))+' '+MON_SHORT[+e.slice(5,7)]:(+m.slice(8))+' '+MON_SHORT[+m.slice(5,7)]+' – '+(+e.slice(8))+' '+MON_SHORT[+e.slice(5,7)])};
 const moLabel=k=>MONTH_L[+k.slice(5,7)]+' '+k.slice(0,4);
 function msRender(id,items,sel,onChange,def){
-  const el=$('#'+id);const eff=sel||def||items.map(i=>i.v);const n=eff.length;
-  el.querySelector('summary').textContent=!sel?(def&&def.length<items.length?'Equipo ('+def.length+')':'Todos ('+items.length+')'):n===items.length?'Todos ('+n+')':n===0?'Ninguno':n===1?items.find(i=>i.v===eff[0])?.l||'1 elegido':n+' elegidos';
-  el.querySelector('.ms-pop').innerHTML=`<div class="ms-act"><button type="button" data-ms="all">Todos</button>${def&&def.length<items.length?'<button type="button" data-ms="team">Solo equipo</button>':''}<button type="button" data-ms="none">Quitar selección</button></div>`+
-    items.map(i=>`<label><input type="checkbox" value="${esc(i.v)}" ${eff.includes(i.v)?'checked':''}>${i.c?`<span class="dot" style="background:${i.c}"></span>`:''}${esc(i.l)}${i.s?`<small>${esc(i.s)}</small>`:''}</label>`).join('');
+  const el=$('#'+id);const eff=sel||def||items.map(i=>i.v);const n=eff.length;const empty=sel&&!sel.length;
+  el.querySelector('summary').textContent=!sel||!sel.length?(def&&def.length<items.length?'Equipo ('+def.length+')':'Todos ('+items.length+')'):n===items.length?'Todos ('+n+')':n===1?items.find(i=>i.v===eff[0])?.l||'1 elegido':n+' elegidos';
+  el.querySelector('.ms-pop').innerHTML=`<div class="ms-act"><button type="button" data-ms="all">Todos</button>${def&&def.length<items.length?'<button type="button" data-ms="team">Solo equipo</button>':''}<button type="button" data-ms="none">Quitar selección</button></div>${!sel||!sel.length?`<p class="ms-hint">Sin marcar = ${def&&def.length<items.length?'todo el equipo':'todos'}. Marca los que quieras ver.</p>`:''}`+
+    items.map(i=>`<label><input type="checkbox" value="${esc(i.v)}" ${sel&&sel.length&&eff.includes(i.v)?'checked':''}>${i.c?`<span class="dot" style="background:${i.c}"></span>`:''}${esc(i.l)}${i.s?`<small>${esc(i.s)}</small>`:''}</label>`).join('');
   const same=(x,y)=>x.length===y.length&&x.every(k=>y.includes(k));
   const norm2=v=>def?(same(v,def)?null:v):(v.length===items.length?null:v);
-  el.querySelectorAll('input').forEach(c=>c.onchange=()=>onChange(norm2([...el.querySelectorAll('input:checked')].map(x=>x.value))));
+  el.querySelectorAll('input').forEach(c=>c.onchange=()=>{if(!sel||!sel.length){onChange([c.value]);return}/* desde 'todos': el primer clic elige solo ese */onChange(norm2([...el.querySelectorAll('input:checked')].map(x=>x.value)))});
   el.querySelectorAll('[data-ms]').forEach(b=>b.onclick=()=>onChange(b.dataset.ms==='all'?(def?items.map(i=>i.v):null):b.dataset.ms==='team'?null:[]));
 }
 function teamKeys(){return M.agents.filter(a=>a.p).map(a=>a.key)}
@@ -707,7 +709,7 @@ function initFilters(){
 
 /* ---------- filtro de días en calendario: rango o días sueltos ---------- */
 let CAL_MODE='rango',CAL_VIEW=null,CAL_A=null;
-function calSummary(){const f=F();if(SEL_D)return SEL_D.length===1?fDate(SEL_D[0]):SEL_D.length+' días elegidos';
+function calSummary(){const f=F();if(SEL_D&&SEL_D.length)return SEL_D.length===1?fDate(SEL_D[0]):SEL_D.length+' días elegidos';
   if(f.from===f.to)return fDate(f.from);return (+f.from.slice(8))+' '+MON_SHORT[+f.from.slice(5,7)]+' – '+(+f.to.slice(8))+' '+MON_SHORT[+f.to.slice(5,7)]+' '+f.to.slice(0,4)}
 function renderCal(){
   const el=$('#msDays');el.querySelector('summary').textContent=calSummary();
@@ -716,7 +718,7 @@ function renderCal(){
   if(!months.includes(CAL_VIEW))CAL_VIEW=months[months.length-1];const mi=months.indexOf(CAL_VIEW);
   const first=CAL_VIEW+'-01';const lead=(wday(first)+6)%7;const dd=isoDate(first);dd.setUTCMonth(dd.getUTCMonth()+1);dd.setUTCDate(0);const last=dd.toISOString().slice(0,10);
   const hasData=new Set(M.dates);const cells=[];for(let i=0;i<lead;i++)cells.push('<span></span>');
-  for(let d=first;d<=last;d=addDays(d,1)){const out=d<M.sMin||d>M.sMax;const sel=SEL_D?SEL_D.includes(d):(d>=f.from&&d<=f.to);const edge=SEL_D?SEL_D.includes(d):(d===f.from||d===f.to);const pend=CAL_A&&CAL_MODE==='rango'&&d===CAL_A;
+  for(let d=first;d<=last;d=addDays(d,1)){const out=d<M.sMin||d>M.sMax;const sd=SEL_D&&SEL_D.length?SEL_D:null;const sel=sd?sd.includes(d):(d>=f.from&&d<=f.to&&dOk(d,f));const edge=sd?sd.includes(d):(!f.Mo&&!f.Wk&&(d===f.from||d===f.to));const pend=CAL_A&&CAL_MODE==='rango'&&d===CAL_A;
     cells.push(`<button type="button" class="cd${sel?' sel':''}${edge||pend?' edge':''}${wday(d)%6?'':' we'}${hasData.has(d)?' has':''}" data-d="${d}" ${out?'disabled':''} title="${fDate(d)}${hasData.has(d)?' · con conexiones':''}">${+d.slice(8)}</button>`)}
   el.querySelector('.cal-pop').innerHTML=`<div class="ms-act"><button type="button" data-cm="rango" aria-pressed="${CAL_MODE==='rango'}">Rango</button><button type="button" data-cm="sueltos" aria-pressed="${CAL_MODE==='sueltos'}">Días sueltos</button><button type="button" data-cq="all">Todos</button><button type="button" data-cq="none">Quitar selección</button></div>
    <div class="cal-h"><button type="button" class="cal-nav" data-nav="-1" ${mi<=0?'disabled':''} aria-label="Mes anterior">‹</button><b>${esc(moLabel(CAL_VIEW).replace(/^./,c=>c.toUpperCase()))}</b><button type="button" class="cal-nav" data-nav="1" ${mi>=months.length-1?'disabled':''} aria-label="Mes siguiente">›</button></div>
@@ -729,18 +731,18 @@ function renderCal(){
     if(CAL_MODE==='rango'){if(!CAL_A){CAL_A=d;SEL_D=null;$('#fFrom').value=d;$('#fTo').value=d;calApply();return}let a=CAL_A,z=d;if(z<a)[a,z]=[z,a];CAL_A=null;SEL_D=null;$('#fFrom').value=a;$('#fTo').value=z;calApply()}
     else{let s=SEL_D?SEL_D.slice():[];s=s.includes(d)?s.filter(x=>x!==d):[...s,d].sort();SEL_D=s.length?s:[];if(s.length){$('#fFrom').value=s[0];$('#fTo').value=s[s.length-1]}calApply()}});
 }
-function calApply(){C_PAGE=0;render();renderCal();$('#msDays').open=true}
+function calApply(){SEL_M=null;SEL_W=null;initPeriodMS();C_PAGE=0;render();renderCal();$('#msDays').open=true}
 function initPeriodMS(){
   const f0=$('#fFrom').value||M.sMin,f1=$('#fTo').value||M.sMax;
   const months=[];for(let m=M.sMin.slice(0,7);m<=M.sMax.slice(0,7);){months.push(m);const d=isoDate(m+'-01');d.setUTCMonth(d.getUTCMonth()+1);m=d.toISOString().slice(0,7)}
   const mi=months.map(m=>({v:m,l:moLabel(m).replace(/^./,c=>c.toUpperCase())}));
   if(SEL_M){const n0=SEL_M.length;SEL_M=SEL_M.filter(m=>months.includes(m));if(n0&&!SEL_M.length)SEL_M=null}
-  const onM=v=>{SEL_M=v;SEL_W=null;if(v&&v.length)CAL_VIEW=v[0];initPeriodMS();C_PAGE=0;render();renderCal();$('#msMonth').open=true};
+  const onM=v=>{SEL_M=v;SEL_W=null;SEL_D=null;CAL_A=null;$('#fFrom').value=M.sMin;$('#fTo').value=M.sMax;if(v&&v.length)CAL_VIEW=v[0];initPeriodMS();C_PAGE=0;render();renderCal();$('#msMonth').open=true};
   msRender('msMonth',mi,SEL_M,onM);
-  const weeks=[];for(let w=mondayOf(M.sMin);w<=M.sMax;w=addDays(w,7)){if(SEL_M&&!SEL_M.some(m=>m===w.slice(0,7)||m===addDays(w,6).slice(0,7)))continue;weeks.push(w)}
+  const weeks=[];for(let w=mondayOf(M.sMin);w<=M.sMax;w=addDays(w,7)){if(nz(SEL_M)&&!SEL_M.some(m=>m===w.slice(0,7)||m===addDays(w,6).slice(0,7)))continue;weeks.push(w)}
   const wi=weeks.map(w=>({v:w,l:'Semana '+wkLabel(w),s:w.slice(0,4)}));
   if(SEL_W){const n0=SEL_W.length;SEL_W=SEL_W.filter(w=>weeks.includes(w));if(n0&&!SEL_W.length)SEL_W=null}
-  const onW=v=>{SEL_W=v;initPeriodMS();C_PAGE=0;render();$('#msWeek').open=true};
+  const onW=v=>{SEL_W=v;SEL_D=null;CAL_A=null;$('#fFrom').value=M.sMin;$('#fTo').value=M.sMax;if(v&&v.length)CAL_VIEW=v[0].slice(0,7);initPeriodMS();C_PAGE=0;render();renderCal();$('#msWeek').open=true};
   msRender('msWeek',wi,SEL_W,onW);
 }
 function syncWeekSel(){}
