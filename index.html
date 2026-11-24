@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset=utf8><title>Control de Conexiones</title><meta name="description" content="Control de conexiones: tardías por agente y campaña, almuerzo, breaks, desconexiones, festivos y vacaciones."><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="es"><head><meta charset=utf8><title>Control de Conexiones</title><meta name="description" content="Control de conexiones: tardías por agente y campaña, auxiliares, desconexiones, festivos y vacaciones."><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -205,6 +205,9 @@ table.sheet .g-kristel.g-start{border-left:3px solid var(--g-kristel)}
 .ms-pop input{width:16px;height:16px;accent-color:var(--accent)}
 .ms-pop .ms-act{display:flex;gap:6px;padding:4px 4px 8px;border-bottom:1px solid var(--line);margin-bottom:4px}
 .ms-pop .ms-act button{font-size:12px;min-height:28px;padding:3px 9px;background:var(--surface);color:var(--fg);border-color:var(--line)}
+.ms-q{width:100%;margin:2px 0 6px;min-height:34px;border-radius:8px;border:1px solid var(--line);background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2356665e' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E") no-repeat 10px 50%;color:var(--fg);padding:6px 10px 6px 34px;font:inherit;font-size:13.5px}
+.ms-pop input.ms-q{width:100%;height:auto;min-height:34px;padding:6px 10px 6px 34px;background:var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a1638' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E") no-repeat 10px 50%;border:1px solid var(--line);border-radius:8px}
+.ms-q:focus{outline:2px solid var(--accent);outline-offset:0}
 .ms-hint{margin:2px 6px 6px;font-size:11.5px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500}
 .ms-pop small{color:var(--muted);font-weight:400;margin-left:auto;font-size:11.5px}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}
@@ -317,6 +320,54 @@ table.fest td.fx small{display:block;font-size:10px;font-weight:600;opacity:.85}
 table.fest td.lab{background:var(--ok);color:#fff}
 table.fest td.nl{background:#f3c64b;color:#4a3500}
 table.fest td.na{background:var(--surface-2);color:var(--muted)}
+table.fest td.no{background:transparent;color:var(--muted);border:1px dashed var(--line);font-size:11px}
+table.fest th .fc{display:inline-block;margin-top:4px;font-size:10px;font-weight:700;letter-spacing:.04em;padding:1px 6px;border-radius:8px;background:var(--accent-soft);color:var(--accent)}
+
+/* auxiliares */
+.aux-head{display:flex;flex-direction:column;gap:14px}
+.aux-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px}
+.aux-card{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;background:var(--card-tint);border:1px solid var(--card-line);border-radius:12px;padding:14px 16px;min-height:0;font-weight:400;color:var(--fg);border-top:4px solid var(--card-line);animation:pop .5s cubic-bezier(.2,.7,.2,1) both;transition:transform .2s,box-shadow .2s}
+.aux-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(60,10,25,.10);border-color:var(--card-line)}
+.aux-card.on{border-top-color:var(--brand);background:var(--surface);box-shadow:0 0 0 2px var(--accent-soft)}
+.aux-card .l{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.aux-card .v{font-family:var(--font-data);font-size:28px;font-weight:600}
+.aux-card .s{font-size:12px;color:var(--muted)}
+.aux-card small{font-size:11px;color:var(--muted)}
+a.aux-card{text-decoration:none;cursor:pointer}
+/* tablero de configuración */
+.cv-hero{display:flex;flex-direction:column;gap:14px;animation:rise .6s ease both}
+.cv-title{background:linear-gradient(90deg,var(--brand),#c2456b,var(--brand));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.cv-legend{display:flex;flex-wrap:wrap;gap:8px}
+.cv-chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:6px 12px;border-radius:999px;background:var(--card-tint);border:1px solid var(--card-line);animation:pop .5s ease both;animation-delay:var(--d)}
+.cv-chip i,.cv-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+.cv-dot{margin-right:6px;vertical-align:middle}
+.cv-na{display:inline-block;font-size:11.5px;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:2px 7px;background:var(--surface)}
+.ticker{overflow:hidden;border-radius:12px;background:linear-gradient(90deg,#4a0d1f,#8a1638);color:#fff;padding:10px 0;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.tk-track{display:inline-flex;gap:34px;white-space:nowrap;animation:marq 50s linear infinite}
+.tk-track>.tk-it:first-child{margin-left:24px}
+.ticker:hover .tk-track{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(-50%)}}
+.tk-it{display:inline-flex;align-items:center;gap:7px;font-size:13px}
+.tk-it i{width:8px;height:8px;border-radius:50%;display:inline-block;box-shadow:0 0 0 2px rgba(255,255,255,.5)}
+.tk-it.warn b{color:#ffd27a}.tk-it.ok{color:#cdeccf}
+.cv-wrap{max-height:620px;overflow:auto}
+.cv-tbl thead th{position:sticky;top:0;z-index:1;background:var(--surface)}
+.cv-tbl tbody tr{animation:rise .45s ease both;animation-delay:calc(var(--i)*35ms)}
+.cv-tbl tr.has-al td:first-child{box-shadow:inset 3px 0 0 var(--crit)}
+.cv-cell b{display:block;font-size:13.5px}.cv-cell small{display:block;font-size:11px;color:var(--muted);margin:1px 0 4px}
+.bad-cell{background:color-mix(in srgb,var(--crit) 8%,transparent)}
+.cv-al{min-width:200px}.cv-al .pill{display:inline-block;margin:2px 4px 2px 0;white-space:nowrap}
+.blink{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 4px color-mix(in srgb,var(--crit) 18%,transparent)}}
+.cv-edit .cfg-grid{margin-top:4px}
+@media (prefers-reduced-motion: reduce){.tk-track,.cv-title,.blink,.cv-tbl tbody tr,.cv-chip{animation:none}.tk-track{flex-wrap:wrap;white-space:normal}}
+
+.aux-tbl{scroll-margin-top:70px}
+.cfg-map{grid-column:1/-1}
+.aux-tbl .tbl-wrap{max-height:480px;overflow:auto}
+.aux-tbl thead th{position:sticky;top:0;z-index:1;background:var(--surface-2,var(--surface))}
+tr.row-bad td{background:color-mix(in srgb,var(--crit) 7%,transparent)}
 @media (max-width:640px){h1{font-size:22px}.bar-row{grid-template-columns:90px 1fr 54px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -404,11 +455,11 @@ const personOf=n=>PEOPLE.find(p=>samePerson(p.name,n)||norm(n).split(' ')[0]===p
 const pByName=n=>PEOPLE.find(p=>p.name===n)||null;
 
 /* ---------- configuración ---------- */
-const CFG_DEFAULT={limits:{'Almuerzo':60,'Café':15,'Break':10,'Recreo':10,'Baño':5},kLimits:{'Café':10,'Break':10,'Recreo':10},tolIn:0,gapMin:5,sysOff:1,kSatIn:null,lunchWin:15,ringAlert:true};
-function loadCfg(){const s=store.get('ctrlcx.cfg.v2',{})||{};const c=Object.assign({},CFG_DEFAULT,s);c.limits=Object.assign({},CFG_DEFAULT.limits,s.limits||{});c.kLimits=Object.assign({},CFG_DEFAULT.kLimits,s.kLimits||{});return c}
+const CFG_DEFAULT={limits:{'Almuerzo':60,'Café':15,'Break':10,'Recreo':10,'Baño':15},kLimits:{'Café':15,'Break':10,'Recreo':10},tolIn:0,gapMin:5,sysOff:1,kSatIn:null,lunchWin:15,ringAlert:true};
+function loadCfg(){const s=store.get('ctrlcx.cfg.v3',{})||{};const c=Object.assign({},CFG_DEFAULT,s);c.limits=Object.assign({},CFG_DEFAULT.limits,s.limits||{});c.kLimits=Object.assign({},CFG_DEFAULT.kLimits,s.kLimits||{});return c}
 let CFG=loadCfg();
 let MAP_OVR=store.get('ctrlcx.map.v2',{});
-const saveCfg=()=>{store.set('ctrlcx.cfg.v2',CFG);if(DB&&CAN_WRITE)DB.doc('config/settings2').set({cfg:JSON.parse(JSON.stringify(CFG)),map:MAP_OVR,at:new Date().toISOString()}).catch(()=>{})};
+const saveCfg=()=>{store.set('ctrlcx.cfg.v3',CFG);if(DB&&CAN_WRITE)DB.doc('config/settings3').set({cfg:JSON.parse(JSON.stringify(CFG)),map:MAP_OVR,at:new Date().toISOString()}).catch(()=>{})};
 
 const PAUSE_COLORS={'Almuerzo':'var(--p-alm)','Café':'var(--p-cafe)','Baño':'var(--p-bano)','Break':'#c0567a','Recreo':'#3f9c8a','Clasificando':'var(--p-clas)'};
 const pColor=c=>PAUSE_COLORS[c]||'var(--p-otra)';
@@ -439,8 +490,18 @@ function readParams(raw){
     pIn:tv(45,9*3600),pOut:tv(46,18*3600),pL:tv(47,14*3600),pDur:nv(50,1),
     kL0:tv(67,12*3600),kL1:tv(68,13*3600),kCafe:tv(69,9.5*3600),kBreak:tv(70,15*3600+50*60),kPdur:nv(71,10)};
 }
-function readFestivos(raw){const fn=Object.keys(raw).find(n=>norm(n)==='festivos');const fest={};
-  if(fn)(raw[fn]||[]).forEach(r=>{const v=r.find(x=>typeof x==='number'&&x>30000);if(v==null)return;const i=r.indexOf(v);const nm=String(r[i+1]||'Festivo');if(/^\d/.test(nm))return;fest[serialToISO(Math.floor(v+1e-7))]=nm});return fest}
+function readFestivos(raw){const fn=Object.keys(raw).find(n=>norm(n)==='festivos');const fest={},festC={};
+  if(fn){const G=raw[fn]||[];let ci=-1;for(let r=0;r<Math.min(G.length,8);r++){const i=(G[r]||[]).map(norm).findIndex(x=>x.startsWith('pais'));if(i>=0){ci=i;break}}
+    G.forEach(r=>{const v=r.find(x=>typeof x==='number'&&x>30000);if(v==null)return;const i=r.indexOf(v);const nm=String(r[i+1]||'Festivo').trim();if(/^\d/.test(nm))return;const d=serialToISO(Math.floor(v+1e-7));
+      const pc=ci>=0?norm(r[ci]):'';const c=festC[d]||(festC[d]={});
+      if(!pc||pc.startsWith('ambos')||pc.startsWith('todos')){if(ci<0)c.ALL=nm;else{c.COL=c.COL||nm;c.CR=c.CR||nm}}
+      else{if(pc.includes('colombia'))c.COL=nm;if(pc.includes('costa'))c.CR=nm}})}
+  Object.entries(festC).forEach(([d,c])=>{fest[d]=c.ALL||[...new Set([c.COL,c.CR].filter(Boolean))].join(' / ')});
+  FESTC=festC;return fest}
+let FESTC={};
+const festCountries=d=>{const c=FESTC[d];if(!c)return '';if(c.ALL)return '';return [c.COL?'CO':'',c.CR?'CR':''].filter(Boolean).join(' · ')};
+function festApplies(p,d){const c=FESTC[d];if(!c)return false;if(c.ALL)return true;return p&&p.tz==='CR'?!!c.CR:!!c.COL}
+const festName=(p,d)=>{const c=FESTC[d];if(!c)return '';return c.ALL||(p&&p.tz==='CR'?c.CR:c.COL)||''};
 function openerOn(PP,iso){if(!PP.ref)return PP.opener;const wk=Math.round((isoDate(mondayOf(iso))-isoDate(PP.ref))/(7*864e5));return wk%2===0?PP.opener:(PP.opener==='esteban'?'johan':'esteban')}
 /* Kristel: pausas fijas en hora CR → se guardan en hora Colombia */
 function kristelBreaks(PP){const cr=-PP.crOff*3600,d=PP.kPdur*60;return [{cat:'Café',a:PP.kCafe+cr,b:PP.kCafe+cr+d},{cat:'Break',a:PP.kBreak+cr,b:PP.kBreak+cr+d}]}
@@ -451,7 +512,7 @@ function rotationDay(PP,fest,iso){
     out.esteban=mkS(DEF_PEOPLE[0],iso,E[0],E[1],E[2],E[3],'Rotación');out.johan=mkS(DEF_PEOPLE[1],iso,J[0],J[1],J[2],J[3],'Rotación');
     out.paula=mkS(DEF_PEOPLE[2],iso,PP.pIn,PP.pOut,after?PP.pL:null,after?PP.pL+PP.pDur*3600:null,'Rotación');}
   if(after&&w>=1&&w<=6){const kin=w===6&&CFG.kSatIn!=null?CFG.kSatIn:PP.kIn;out.kristel=mkS(DEF_PEOPLE[3],iso,kin+cr,PP.kOut+cr,PP.kL0+cr,PP.kL1+cr,w===6?'Sábado Haleon':'Rotación',{breaks:kristelBreaks(PP)})}
-  Object.values(out).forEach(s=>{if(fest[iso])s.fest=fest[iso]});
+  Object.values(out).forEach(s=>{if(festApplies(s.p,iso))s.fest=festName(s.p,iso)});
   return out;
 }
 function readDetalle(raw,PP){
@@ -502,8 +563,8 @@ function readShared(raw){
   const H=raw[hn];let hr=-1;for(let r=0;r<Math.min(H.length,15);r++){const h=(H[r]||[]).map(norm);if(h.includes('fecha')&&h.includes('agente')&&h.some(x=>x.startsWith('entrada'))){hr=r;break}}
   if(hr<0)return null;
   const an=Object.keys(raw).find(n=>norm(n)==='agentes');const A=an?raw[an]:[];let ar=-1;for(let r=0;r<Math.min(A.length,15);r++){if((A[r]||[]).map(norm).includes('agente')){ar=r;break}}
-  const people=[];const add=(name,login,acct,tz,lider)=>{name=String(name||'').trim();if(!name)return null;let p=people.find(x=>norm(x.name)===norm(name));
-    if(!p){const dp=DEF_PEOPLE.find(x=>samePerson(x.name,name));let key=dp?dp.key:(slug(name)||('a'+people.length));while(people.some(x=>x.key===key))key+='_';p={key,name,acct:'',sub:'',tz:'COL',color:AG_COLORS[people.length%AG_COLORS.length],logins:[],lider:''};people.push(p)}
+  const people=[];const add=(name,login,acct,tz,lider)=>{name=String(name||'').replace(/\s+/g,' ').trim();if(!name)return null;let p=people.find(x=>norm(x.name)===norm(name))||people.find(x=>nameMatch(x.name,name));
+    if(!p){const dp=DEF_PEOPLE.find(x=>samePerson(x.name,name));let key=dp?dp.key:(slug(name)||('a'+people.length));while(people.some(x=>x.key===key))key+='_';p={key,name,acct:'',sub:'',tz:'CR',color:AG_COLORS[people.length%AG_COLORS.length],logins:[],lider:''};people.push(p)}
     if(login)String(login).split(/[,;\s]+/).filter(Boolean).forEach(l=>{if(!p.logins.includes(norm(l)))p.logins.push(norm(l))});
     if(acct&&!p.acct)p.acct=String(acct).trim();if(tz&&/cr|costa/i.test(tz))p.tz='CR';if(lider)p.lider=String(lider);return p};
   if(ar>=0){const h=A[ar].map(norm);const ix=k=>h.findIndex(x=>x.startsWith(k));const iN=ix('agente'),iL=ix('usuario'),iC=ix('cuenta'),iT=ix('zona'),iLd=ix('lider');
@@ -517,7 +578,8 @@ function readShared(raw){
   const fixAccts=()=>people.forEach(p=>{if(p.sub)return;
   if(!p.acct)p.acct='Sin cuenta';const k=Object.keys(ACCTS).find(k=>ACCTS[k].camp.some(x=>norm(p.acct).includes(x))||norm(k)===norm(p.acct));
     if(k)p.acct=k;else if(!ACCTS[p.acct])ACCTS[p.acct]={label:p.acct,camp:[norm(p.acct)],days:'según Horarios',scheduledBreaks:false};p.sub=ACCTS[p.acct].label});fixAccts();
-  const sched={},aus={};const lim=c=>(CFG.kLimits[c]||10)*60;
+  const sched={},aus={};const lim=c=>(CFG.limits[c]||10)*60;
+  people.forEach(p=>{p.tz=isColPerson(p)?'COL':'CR'});
   rows.forEach(({d,p,row})=>{const off=p.tz==='CR'?3600:0;const t=i=>i>=0?timeSec(row[i]):null;const i=t(I.i),o=t(I.o);const nov=I.nov>=0?String(row[I.nov]||'').trim():'';
     if(i==null||o==null){if(nov){const u=nov.toUpperCase();aus[p.key+'|'+d]=['V','I','L',...NOV_CODES.map(x=>x[0])].includes(u)?u:'N:'+nov}return}
     const l0=t(I.l0),l1=t(I.l1);const br=[];const cf=t(I.cafe),bk=t(I.brk);if(cf!=null)br.push({cat:'Café',a:cf+off,b:cf+off+lim('Café')});if(bk!=null)br.push({cat:'Break',a:bk+off,b:bk+off+lim('Break')});
@@ -533,8 +595,16 @@ function readShared(raw){
         for(let d=d1;d<=(d2<d1?d1:d2);d=addDays(d,1))aus[p.key+'|'+d]=code}}}
   const pairs=[];const bn=Object.keys(raw).find(n=>norm(n)==='backups');
   if(bn){const G=raw[bn];for(let r=1;r<G.length;r++){const row=G[r]||[];const a=String(row[0]||'').trim(),b=String(row[1]||'').trim();if(!a||!b)continue;const pa=add(a,'','',''),pb=add(b,'','','');if(pa&&pb)pairs.push({a:pa,b:pb,nota:String(row[2]||'')})}}
-  fixAccts();return {people,sched,aus,nov,pairs};
+  people.forEach(p=>{p.tz=isColPerson(p)?'COL':'CR'});fixAccts();return {people,sched,aus,nov,pairs};
 }
+/* agentes que se gestionan en hora Colombia; todos los demás, hora Costa Rica */
+const COL_FORCE=['Johan Rojas','Jhoan Rojas','Esteban Gutiérrez','Paula Garcés','Jeimmy Vanessa Riaño Rodríguez','Carol Andrea Diaz Rativa','Luz Derly Giraldo Calderon','Roberto Carlos Pechene Lopez','Daniela Alejandra Barrera Castro','Sonia Mireya Barrios Castiblanco'];
+const COL_LOGINS=['jrojas','johan.rojas','esteban.gutierrez','paula.garces','jeimmy.riano','carol.diaz','luz.giraldo','roberto.pechene','daniela.barrera','sonia.barrios'];
+const isColPerson=p=>COL_FORCE.some(n=>nameMatch(n,p.name))||(p.logins||[]).some(l=>COL_LOGINS.includes(l.split('@')[0]));
+/* mismo agente aunque el nombre esté escrito distinto: 'Josue Díaz' = 'Josué Díaz Quesada' */
+function nameMatch(a,b){const ta=norm(a).split(' ').filter(Boolean),tb=norm(b).split(' ').filter(Boolean);if(ta.join(' ')===tb.join(' '))return true;
+  const [sh,lg]=ta.length<=tb.length?[ta,tb]:[tb,ta];if(sh.length<2)return false;const eq=(x,y)=>x===y||(x.length>=4&&y.length>=4&&lev(x,y)<=1);
+  if(!eq(sh[0],lg[0]))return false;return sh.slice(1).every(t=>lg.slice(1).some(u=>eq(t,u)))}
 function build(raw){
   const FMT=raw.__fmt||{};const ORDER=raw.__order||null;
   const names=Object.keys(raw).filter(n=>!n.startsWith('__'));
@@ -565,14 +635,14 @@ function build(raw){
   let sMax=[dMax,detDates[detDates.length-1]].filter(Boolean).sort().pop()||sMin;
   if(PP&&PP.mesIni){const d=isoDate(PP.mesIni);d.setUTCMonth(d.getUTCMonth()+1);d.setUTCDate(0);const e=d.toISOString().slice(0,10);sMax=dMax&&dMax>e?dMax:e;if(sMin>PP.mesIni&&!dMin)sMin=PP.mesIni}
   const sched=SH?Object.assign({},SH.sched):{};
-  if(SH){const ds=Object.keys(SH.sched).map(k=>k.split('|')[1]).sort();if(ds.length){if(ds[0]<sMin)sMin=ds[0];const e=ds[ds.length-1];sMax=dMax&&dMax>e?dMax:e}Object.values(sched).forEach(s=>{if(fest[s.date])s.fest=fest[s.date]})}
+  if(SH){const ds=Object.keys(SH.sched).map(k=>k.split('|')[1]).sort();if(ds.length){if(ds[0]<sMin)sMin=ds[0];const e=ds[ds.length-1];sMax=dMax&&dMax>e?dMax:e}Object.values(sched).forEach(s=>{if(festApplies(s.p,s.date))s.fest=festName(s.p,s.date)})}
   if(!SH)for(let d=sMin;d<=sMax;d=addDays(d,1)){
     const rot=PP?rotationDay(PP,fest,d):{};const dd=det[d]||{};
     PEOPLE.forEach(p=>{let s=dd[p.key];
       if(s&&s.off){if(!aus[p.key+'|'+d])aus[p.key+'|'+d]='N:'+s.off;return}
       if(!s&&p.key==='kristel'&&wday(d)===6)s=rot.kristel; /* Detalle diario no trae sábados: Haleon sí trabaja */
       if(!s&&!det[d])s=rot[p.key];
-      if(s){if(fest[d])s.fest=fest[d];sched[p.key+'|'+d]=s}})}
+      if(s){if(festApplies(p,d))s.fest=festName(p,d);sched[p.key+'|'+d]=s}})}
 
   /* agentes (logins) → persona */
   const logins=[...new Set(events.map(e=>e.login))].sort();
@@ -634,14 +704,16 @@ function compute(){
       else if(date===M.dMax)add('info','Sin logout aún','Último día de la data: puede que la jornada siguiera en curso cuando se descargó.',null);else add('warn','Sin logout','Hay login pero no se registró el Logout ese día.',null);
       /* almuerzo */
       const L=D.pauses.filter(p=>p.cat==='Almuerzo');D.lunchDur=L.reduce((t,p)=>t+p.dur,0);D.lunchStart=L.length?L[0].t:null;D.lunchEnd=L.length?L[L.length-1].t+L[L.length-1].dur:null;
-      const lim=(CFG.limits.Almuerzo||60)*60;D.lunchExc=Math.max(0,D.lunchDur-lim);
+      const sl=s.lunch?s.lunch[1]-s.lunch[0]:0;const lim=sl>=10*60&&sl<=3*3600?sl:(CFG.limits.Almuerzo||60)*60;D.lunchLim=lim;D.lunchExc=Math.max(0,D.lunchDur-lim);
       if(D.lunchExc>0)add(D.lunchExc>=600?'crit':'warn','Exceso almuerzo','Almuerzo de '+mDur(D.lunchDur)+' (límite '+(lim/60)+' min) → +'+mDur(D.lunchExc)+'.',D.lunchExc,D.lunchStart);
       if(s.lunch&&D.lunchStart!=null){D.lunchShift=Math.round((D.lunchStart-s.lunch[0])/60);if(Math.abs(D.lunchShift)>CFG.lunchWin)add('info','Almuerzo fuera de franja','Salió a almorzar a las '+tTxt(D.lunchStart,s.p)+'; su franja es '+tTxt(s.lunch[0],s.p)+'–'+tTxt(s.lunch[1],s.p)+'.',null,D.lunchStart)}
       if(s.lunch&&!L.length&&D.connected>4*3600)add('info','Sin almuerzo registrado','No hay pausa de Almuerzo en el día.',null);
       /* breaks */
-      const kl=s.breaks&&s.breaks.length?CFG.kLimits:CFG.limits;
+      const kl=CFG.limits;
       D.pauses.filter(p=>BREAK_CATS.includes(p.cat)).forEach(p=>{const Lm=p.cat==='Baño'?CFG.limits['Baño']:kl[p.cat];p.lim=Lm;
-        if(Lm!=null&&Lm!==''&&p.dur>Lm*60){p.exc=p.dur-Lm*60;D.breakExc+=p.exc;add(p.exc>=600?'crit':'warn','Exceso '+p.cat,p.cat+' de las '+tTxt(p.t,s.p)+' duró '+mDur(p.dur)+' (límite '+Lm+' min) → +'+mDur(p.exc)+'.',p.exc,p.t)}
+        if(Lm!=null&&Lm!==''&&p.dur>Lm*60){p.exc=p.dur-Lm*60;
+          if(p.cat==='Baño'){p.alertOnly=true;add('warn','Baño prolongado','Baño de las '+tTxt(p.t,s.p)+' duró '+mDur(p.dur)+' (más de '+Lm+' min). Solo alerta: no suma a tardías.',p.exc,p.t)}
+          else{D.breakExc+=p.exc;add(p.exc>=600?'crit':'warn','Exceso '+p.cat,p.cat+' de las '+tTxt(p.t,s.p)+' duró '+mDur(p.dur)+' (límite '+Lm+' min) → +'+mDur(p.exc)+'.',p.exc,p.t)}}
         const sb=(s.breaks||[]).find(b=>b.cat===p.cat||(p.cat==='Recreo'&&b.cat==='Break'));p.sched=sb||null});
       (s.breaks||[]).forEach(b=>{if(!D.pauses.some(p=>p.cat===b.cat||(b.cat==='Break'&&p.cat==='Recreo')))D.missing=(D.missing||[]).concat(b.cat)});
       /* desconexiones dentro del turno (sin contar el almuerzo) */
@@ -679,22 +751,25 @@ const singleAgent=()=>{const f=F();const ag=fAgents();return ag.length===1?ag[0]
 const MONTH_L=['','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const wkLabel=m=>{const e=addDays(m,6);return (m.slice(5,7)===e.slice(5,7)?(+m.slice(8))+'–'+(+e.slice(8))+' '+MON_SHORT[+e.slice(5,7)]:(+m.slice(8))+' '+MON_SHORT[+m.slice(5,7)]+' – '+(+e.slice(8))+' '+MON_SHORT[+e.slice(5,7)])};
 const moLabel=k=>MONTH_L[+k.slice(5,7)]+' '+k.slice(0,4);
+const MSQ={};
 function msRender(id,items,sel,onChange,def){
   const el=$('#'+id);const eff=sel||def||items.map(i=>i.v);const n=eff.length;const empty=sel&&!sel.length;
   el.querySelector('summary').textContent=!sel||!sel.length?(def&&def.length<items.length?'Equipo ('+def.length+')':'Todos ('+items.length+')'):n===items.length?'Todos ('+n+')':n===1?items.find(i=>i.v===eff[0])?.l||'1 elegido':n+' elegidos';
-  el.querySelector('.ms-pop').innerHTML=`<div class="ms-act"><button type="button" data-ms="all">Todos</button>${def&&def.length<items.length?'<button type="button" data-ms="team">Solo equipo</button>':''}<button type="button" data-ms="none">Quitar selección</button></div>${!sel||!sel.length?`<p class="ms-hint">Sin marcar = ${def&&def.length<items.length?'todo el equipo':'todos'}. Marca los que quieras ver.</p>`:''}`+
+  el.querySelector('.ms-pop').innerHTML=`<div class="ms-act"><button type="button" data-ms="all">Todos</button>${def&&def.length<items.length?'<button type="button" data-ms="team">Solo equipo</button>':''}<button type="button" data-ms="none">Quitar selección</button></div>${items.length>0?`<input type="search" class="ms-q" placeholder="Buscar…" value="${esc(MSQ[id]||'')}" aria-label="Buscar">`:''}${!sel||!sel.length?`<p class="ms-hint">Sin marcar = ${def&&def.length<items.length?'todo el equipo':'todos'}. Marca los que quieras ver.</p>`:''}`+
     items.map(i=>`<label><input type="checkbox" value="${esc(i.v)}" ${sel&&sel.length&&eff.includes(i.v)?'checked':''}>${i.c?`<span class="dot" style="background:${i.c}"></span>`:''}${esc(i.l)}${i.s?`<small>${esc(i.s)}</small>`:''}</label>`).join('');
+  const q=el.querySelector('.ms-q');const applyQ=()=>{const t=norm(MSQ[id]||'');el.querySelectorAll('.ms-pop label').forEach(l=>{l.style.display=!t||norm(l.textContent).includes(t)?'':'none'})};
+  if(q){q.oninput=()=>{MSQ[id]=q.value;applyQ()};q.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const vis=[...el.querySelectorAll('.ms-pop label')].filter(l=>l.style.display!=='none');if(vis.length===1)vis[0].querySelector('input').click()}};applyQ()}
   const same=(x,y)=>x.length===y.length&&x.every(k=>y.includes(k));
   const norm2=v=>def?(same(v,def)?null:v):(v.length===items.length?null:v);
-  el.querySelectorAll('input').forEach(c=>c.onchange=()=>{if(!sel||!sel.length){onChange([c.value]);return}/* desde 'todos': el primer clic elige solo ese */onChange(norm2([...el.querySelectorAll('input:checked')].map(x=>x.value)))});
+  el.querySelectorAll('input[type=checkbox]').forEach(c=>c.onchange=()=>{if(!sel||!sel.length){onChange([c.value]);return}/* desde 'todos': el primer clic elige solo ese */onChange(norm2([...el.querySelectorAll('input[type=checkbox]:checked')].map(x=>x.value)))});
   el.querySelectorAll('[data-ms]').forEach(b=>b.onclick=()=>onChange(b.dataset.ms==='all'?(def?items.map(i=>i.v):null):b.dataset.ms==='team'?null:[]));
 }
 function teamKeys(){return M.agents.filter(a=>a.p).map(a=>a.key)}
 function initMS(){
-  const ai=M.agents.slice().sort((x,y)=>(x.p?0:1)-(y.p?0:1)).map(a=>({v:a.key,l:a.name,c:a.color,s:(a.p?'':'sin horario · ')+(ACCTS[a.acct]?ACCTS[a.acct].label:a.acct)}));
+  const seenK=new Set();const ai=M.agents.slice().sort((x,y)=>(x.p?0:1)-(y.p?0:1)).filter(a=>!seenK.has(a.key)&&seenK.add(a.key)).map(a=>({v:a.key,l:a.name,c:a.color,s:(a.p?'':'sin horario · ')+(ACCTS[a.acct]?ACCTS[a.acct].label:a.acct)}));
   if(SEL_A){const n0=SEL_A.length;SEL_A=SEL_A.filter(k=>ai.some(i=>i.v===k));if(n0&&!SEL_A.length)SEL_A=null}
   const team=teamKeys();
-  const onA=v=>{SEL_A=v;store.set('ctrlcx.selA2',v);msRender('msAgent',ai,SEL_A,onA,team);C_PAGE=0;render();$('#msAgent').open=true};msRender('msAgent',ai,SEL_A,onA,team);
+  const onA=v=>{SEL_A=v;store.set('ctrlcx.selA2',v);msRender('msAgent',ai,SEL_A,onA,team);C_PAGE=0;render();$('#msAgent').open=true;const q=$('#msAgent .ms-q');if(q&&MSQ.msAgent){q.focus();q.setSelectionRange(q.value.length,q.value.length)}};msRender('msAgent',ai,SEL_A,onA,team);
   const ci=[...new Set(M.agents.map(a=>a.acct))].map(k=>({v:k,l:ACCTS[k]?ACCTS[k].label:k,s:ACCTS[k]?ACCTS[k].days:''}));
   if(SEL_C){const n0=SEL_C.length;SEL_C=SEL_C.filter(k=>ci.some(i=>i.v===k));if(n0&&!SEL_C.length)SEL_C=null}
   const onC=v=>{SEL_C=v;store.set('ctrlcx.selC',v);msRender('msAcct',ci,SEL_C,onC);C_PAGE=0;render();$('#msAcct').open=true};
@@ -748,14 +823,14 @@ function initPeriodMS(){
 function syncWeekSel(){}
 
 /* ---------- pestañas ---------- */
-const BASE_TABS=[['resumen','Resumen'],['reporte','Reporte de tardías'],['campanas','Tardías campañas overall'],['seguimiento','Seguimiento por agente'],['pausas','Almuerzo y breaks'],['alertas','Alertas y desconexiones'],['horario','Horarios'],['festivos','Festivos'],['novedades','Vacaciones y novedades'],['conexiones','Data conexiones']];
+const BASE_TABS=[['resumen','Resumen'],['reporte','Reporte de tardías'],['campanas','Tardías campañas overall'],['seguimiento','Seguimiento por agente'],['pausas','Auxiliares'],['alertas','Alertas y desconexiones'],['horario','Horarios'],['festivos','Festivos'],['novedades','Vacaciones y novedades'],['conexiones','Data conexiones']];
 function TABS(){return [...BASE_TABS,['config','Configuración']]}
 let TAB=store.get('ctrlcx.tab2','resumen');
 const hashTab=decodeURIComponent(location.hash.slice(1));if(hashTab)TAB=hashTab;
 function renderTabs(){const nA=fAlerts().filter(a=>a.sev==='crit').length;const T=TABS();if(!T.some(t=>t[0]===TAB))TAB='resumen';
   $('#tabs').innerHTML=T.map(([k,l],i)=>`${i===BASE_TABS.length||i===2||i===6?'<span class="tab-sep" aria-hidden="true"></span>':''}<button role="tab" aria-selected="${k===TAB}" data-tab="${esc(k)}">${esc(l)}${k==='alertas'&&nA?`<span class="count">${nA}</span>`:''}</button>`).join('')}
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-tab]');if(!b)return;TAB=b.dataset.tab;store.set('ctrlcx.tab2',TAB);render()});
-function render(){renderTabs();DL={};const V={resumen:vResumen,reporte:vReporte,campanas:vCampanas,seguimiento:vSeguimiento,pausas:vPausas,alertas:vAlertasDesc,conexiones:vConexiones,horario:vHorario,festivos:vFestivos,novedades:vNovedades,config:vConfig};
+function render(){renderTabs();DL={};const V={resumen:vResumen,reporte:vReporte,campanas:vCampanas,seguimiento:vSeguimiento,pausas:vAux,alertas:vAlertasDesc,conexiones:vConexiones,horario:vHorario,festivos:vFestivos,novedades:vNovedades,config:vConfig};
   if(!V[TAB])TAB='resumen';const fn=V[TAB];$('#main').innerHTML='';const s=document.createElement('section');s.className='panel';$('#main').appendChild(s);
   if(!M.events.length&&!['horario','config','novedades','festivos'].includes(TAB)){s.insertAdjacentHTML('beforeend',`<div class="banner"><b>Aún no hay conexiones en el archivo.</b> Pega la data que descargas de Conexiu en la pestaña <b>${esc(M.cName||'Conexiones')}</b> de tu Excel, guarda y súbelo con <b>Actualizar datos</b>. Mientras tanto puedes ver el Horario por día y las pestañas de tu plantilla.</div>`)}
   const box=document.createElement('div');box.style.display='contents';s.appendChild(box);fn(box);animateNums(s)}
@@ -763,7 +838,7 @@ function render(){renderTabs();DL={};const V={resumen:vResumen,reporte:vReporte,
 
 /* ---------- números animados ---------- */
 function animateNums(root){if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  root.querySelectorAll('.kpi .v,.rep-box .v,.mini b,.ring .v').forEach(el=>{if(el.children.length)return;const t=el.textContent.trim();let m;
+  root.querySelectorAll('.kpi .v,.rep-box .v,.mini b,.ring .v,.aux-card .v').forEach(el=>{if(el.children.length)return;const t=el.textContent.trim();let m;
     const run=(fmt,end)=>{const t0=performance.now(),D=900;const step=now=>{const k=Math.min(1,(now-t0)/D),e=1-Math.pow(1-k,3);el.textContent=fmt(end*e);if(k<1)requestAnimationFrame(step);else el.textContent=t};el.textContent=fmt(0);requestAnimationFrame(step)};
     if((m=t.match(/^([+−-]?)(\d+):(\d{2})(.*)$/))){const tot=(+m[2])*60+(+m[3]);run(v=>{v=Math.round(v);return m[1]+Math.floor(v/60)+':'+pad(v%60)+m[4]},tot)}
     else if((m=t.match(/^(\d+)(%?)(\s.*)?$/))){run(v=>Math.round(v)+m[2]+(m[3]||''),+m[1])}
@@ -780,7 +855,7 @@ const outPill=D=>D.outDiff==null?pill('mut','Sin logout'):D.outDiff>0?pill('ok',
 const excPill=s=>s>0?pill('bad','+'+mDur(s)):pill('ok','OK');
 function agg(ds){const w=workDays(ds),c=w.filter(d=>d.evs.length);const late=c.filter(d=>d.late>0);
   return {prog:w.length,conn:c.length,ontime:c.length-late.length,lateN:late.length,lateSec:late.reduce((t,d)=>t+d.lateSec,0),maxLate:late.reduce((m,d)=>Math.max(m,d.lateSec),0),
-    lunchExc:c.reduce((t,d)=>t+d.lunchExc,0),lunchN:c.filter(d=>d.lunchExc>0).length,breakExc:c.reduce((t,d)=>t+d.breakExc,0),breakN:c.reduce((t,d)=>t+d.pauses.filter(p=>p.exc>0).length,0),
+    lunchExc:c.reduce((t,d)=>t+d.lunchExc,0),lunchN:c.filter(d=>d.lunchExc>0).length,breakExc:c.reduce((t,d)=>t+d.breakExc,0),breakN:c.reduce((t,d)=>t+d.pauses.filter(p=>!p.alertOnly&&p.exc>0).length,0),
     absent:w.filter(d=>d.absent).length,gapsN:c.reduce((t,d)=>t+d.gaps.length,0),gapMax:c.reduce((m,d)=>Math.max(m,...d.gaps.map(g=>g.dur),0),0),gapTot:c.reduce((t,d)=>t+d.gaps.reduce((x,g)=>x+g.dur,0),0),
     total:c.reduce((t,d)=>t+d.total,0),early:c.filter(d=>d.outDiff<0).length,punct:c.length?Math.round((c.length-late.length)/c.length*100):null,conn_s:c.reduce((t,d)=>t+d.connected,0)}}
 const pct=v=>v==null?'—':v+'%';
@@ -796,7 +871,7 @@ function rowsDays(ds){return [['Fecha','Día','Semana','Agente','Cuenta','Zona',
 function rowsAlertas(al){return [['Severidad','Fecha','Agente','Cuenta','Alerta','Tiempo','Detalle'],...al.map(a=>[SEVL[a.sev],a.day.date,a.day.a.name,a.day.a.acct,a.type,a.sec?hDur(a.sec):'',a.detail])]}
 function rowsConexiones(ev){return [['Fecha (COL)','Hora sistema','Hora Colombia','Agente','Login','Tipo','Descripcion','Resultado','Razon','Duracion','Espera','Campana','DID Origen','DID Destino','Pais'],...ev.map(e=>{const a=agentBy(e.login);return [e.date,fT(e.t0,1),fT(e.t,1),a?a.name:e.login,e.login,e.tipo,e.desc,e.res,e.razon,e.dur?fDur(e.dur):'',e.esp?fDur(e.esp):'',e.camp,e.orig,e.dest,e.pais]})]}
 function rowsPausas(ds){const out=[['Fecha','Agente','Cuenta','Pausa','Programada','Inicio','Fin','Duración','Límite (min)','Exceso','Estado','Campaña']];
-  ds.forEach(D=>D.pauses.forEach(p=>{const P=D.a.p;out.push([D.date,D.a.name,D.a.acct,p.cat,p.sched?tTxt(p.sched.a,P)+'–'+tTxt(p.sched.b,P):p.cat==='Almuerzo'&&D.s&&D.s.lunch?tTxt(D.s.lunch[0],P)+'–'+tTxt(D.s.lunch[1],P):'',tTxt(p.t,P,1),tTxt(p.t+p.dur,P,1),mDur(p.dur),p.lim??(p.cat==='Almuerzo'?CFG.limits.Almuerzo:''),p.exc>0?mDur(p.exc):'',p.exc>0?'Exceso':p.lim!=null||p.cat==='Almuerzo'?'OK':'',p.camp])}));return out}
+  ds.forEach(D=>D.pauses.forEach(p=>{const P=D.a.p;out.push([D.date,D.a.name,D.a.acct,p.cat,p.sched?tTxt(p.sched.a,P)+'–'+tTxt(p.sched.b,P):p.cat==='Almuerzo'&&D.s&&D.s.lunch?tTxt(D.s.lunch[0],P)+'–'+tTxt(D.s.lunch[1],P):'',tTxt(p.t,P,1),tTxt(p.t+p.dur,P,1),mDur(p.dur),p.lim??(p.cat==='Almuerzo'?Math.round((D.lunchLim||CFG.limits.Almuerzo*60)/60):''),p.exc>0?mDur(p.exc):'',p.alertOnly?'Alerta (no suma)':p.exc>0?'Exceso':p.lim!=null||p.cat==='Almuerzo'?'OK':'',p.camp])}));return out}
 function rowsGaps(ds){const out=[['Fecha','Agente','Cuenta','Desde','Hasta','Duración dentro del turno']];ds.forEach(D=>D.gaps.forEach(g=>out.push([D.date,D.a.name,D.a.acct,tTxt(g.a,D.a.p,1),tTxt(g.b,D.a.p,1),hDur(g.dur)])));return out}
 function periodRows(ds,mode){const keyF=mode==='mes'?d=>d.date.slice(0,7):d=>mondayOf(d.date);const lab=mode==='mes'?moLabel:k=>'Semana '+wkLabel(k);
   const keys=[...new Set(ds.map(keyF))].sort();const out=[[mode==='mes'?'Mes':'Semana',...AG_H]];
@@ -922,9 +997,9 @@ function vAlmuerzo(el){
   const ds=fDays().filter(d=>d.s&&d.evs.length).sort((a,b)=>a.date<b.date?1:a.date>b.date?-1:PEOPLE.indexOf(a.a.p)-PEOPLE.indexOf(b.a.p));const lim=CFG.limits.Almuerzo||60;
   const ags=fAgents().filter(a=>ds.some(d=>d.a===a));
   const sum=ags.map(a=>{const x=ds.filter(d=>d.a===a);const w=x.filter(d=>d.lunchDur);return `<tr><td>${agCell(a)}</td><td class="c">${x[0]&&x[0].s.lunch?tRange(x[0].s.lunch[0],x[0].s.lunch[1],a.p):'—'}</td><td class="c">${w.length}</td><td class="c mono">${w.length?mDur(w.reduce((t,d)=>t+d.lunchDur,0)/w.length):'—'}</td><td class="c">${x.filter(d=>d.lunchExc).length?pill('bad',x.filter(d=>d.lunchExc).length):pill('ok',0)}</td><td class="c">${excPill(x.reduce((t,d)=>t+d.lunchExc,0))}</td><td class="c">${x.filter(d=>!d.lunchDur).length||'0'}</td></tr>`});
-  el.innerHTML=toolbar('Almuerzo',`Del ${rangeTxt()}. Programado según Detalle diario vs la pausa <b>Almuerzo</b> de la data. Límite ${lim} min (se suman todas las pausas de almuerzo del día). <b>Rojo</b>: exceso. <b>Verde</b>: dentro del tiempo.`,dl(()=>({file:'almuerzo_'+fileTag(),sheets:[{name:'Almuerzo',rows:[['Fecha','Agente','Cuenta','Programado','Inicio real','Fin real','Duración','Límite (min)','Exceso','Inicio vs programado (min)','Estado'],...ds.map(D=>{const P=D.a.p;return [D.date,D.a.name,D.a.acct,D.s.lunch?tTxt(D.s.lunch[0],P)+'–'+tTxt(D.s.lunch[1],P):'',tTxt(D.lunchStart,P,1),tTxt(D.lunchEnd,P,1),D.lunchDur?mDur(D.lunchDur):'Sin almuerzo',lim,D.lunchExc?mDur(D.lunchExc):'',D.lunchShift??'',D.lunchExc?'Exceso':D.lunchDur?'OK':'Sin registro']})]}]})))+
+  el.innerHTML=toolbar('Almuerzo',`Del ${rangeTxt()}. Programado según el documento vs la pausa <b>Almuerzo</b> de la data. El límite es el que tiene programado cada agente ese día (60 o 30 min); si no tiene franja, ${lim} min. Se suman todas las pausas de almuerzo del día. <b>Rojo</b>: exceso. <b>Verde</b>: dentro del tiempo.`,dl(()=>({file:'almuerzo_'+fileTag(),sheets:[{name:'Almuerzo',rows:[['Fecha','Agente','Cuenta','Programado','Inicio real','Fin real','Duración','Límite (min)','Exceso','Inicio vs programado (min)','Estado'],...ds.map(D=>{const P=D.a.p;return [D.date,D.a.name,D.a.acct,D.s.lunch?tTxt(D.s.lunch[0],P)+'–'+tTxt(D.s.lunch[1],P):'',tTxt(D.lunchStart,P,1),tTxt(D.lunchEnd,P,1),D.lunchDur?mDur(D.lunchDur):'Sin almuerzo',Math.round((D.lunchLim||lim*60)/60),D.lunchExc?mDur(D.lunchExc):'',D.lunchShift??'',D.lunchExc?'Exceso':D.lunchDur?'OK':'Sin registro']})]}]})))+
   `<div class="card"><h3>Por agente</h3>${tbl(['Agente',{t:'Franja programada',c:'c'},{t:'Días con almuerzo',c:'c'},{t:'Duración promedio',c:'c'},{t:'Días con exceso',c:'c'},{t:'Exceso total',c:'c'},{t:'Sin almuerzo',c:'c'}],sum)}</div>`+
-  tbl(['Fecha','Agente',{t:'Programado',c:'c'},{t:'Inicio real',c:'c'},{t:'Fin real',c:'c'},{t:'Duración',c:'c'},{t:'Exceso',c:'c'},{t:'Inicio vs franja',c:'c'}],ds.map(D=>{const P=D.a.p,s=D.s;return `<tr class="click" data-day="${R.days.indexOf(D)}"><td class="mono">${fDate(D.date)}</td><td>${agCell(D.a)}</td><td class="c">${s.lunch?tRange(s.lunch[0],s.lunch[1],P):'—'}</td><td class="c">${tHtml(D.lunchStart,P,1)}</td><td class="c">${tHtml(D.lunchEnd,P,1)}</td><td class="c mono">${D.lunchDur?mDur(D.lunchDur):pill('mut','Sin almuerzo')}</td><td class="c">${D.lunchDur?excPill(D.lunchExc):''}</td><td class="c">${D.lunchShift==null?'':Math.abs(D.lunchShift)<=CFG.lunchWin?pill('ok','En franja'):pill('warn',(D.lunchShift>0?'+':'')+D.lunchShift+' min')}</td></tr>`}));
+  tbl(['Fecha','Agente',{t:'Programado',c:'c'},{t:'Límite',c:'c'},{t:'Inicio real',c:'c'},{t:'Fin real',c:'c'},{t:'Duración',c:'c'},{t:'Exceso',c:'c'},{t:'Inicio vs franja',c:'c'}],ds.map(D=>{const P=D.a.p,s=D.s;return `<tr class="click" data-day="${R.days.indexOf(D)}"><td class="mono">${fDate(D.date)}</td><td>${agCell(D.a)}</td><td class="c">${s.lunch?tRange(s.lunch[0],s.lunch[1],P):'—'}</td><td class="c">${pill('mut',Math.round((D.lunchLim||3600)/60)+' min')}</td><td class="c">${tHtml(D.lunchStart,P,1)}</td><td class="c">${tHtml(D.lunchEnd,P,1)}</td><td class="c mono">${D.lunchDur?mDur(D.lunchDur):pill('mut','Sin almuerzo')}</td><td class="c">${D.lunchDur?excPill(D.lunchExc):''}</td><td class="c">${D.lunchShift==null?'':Math.abs(D.lunchShift)<=CFG.lunchWin?pill('ok','En franja'):pill('warn',(D.lunchShift>0?'+':'')+D.lunchShift+' min')}</td></tr>`}));
   bindDays(el);
 }
 
@@ -1010,6 +1085,32 @@ function vNovedades(el){
   $('#novM').onchange=e=>{NOV_M=e.target.value;render()};
 }
 
+
+/* ---------- Auxiliares: una tabla por auxiliar ---------- */
+const tDur=x=>x>=3600?hDur(x)+' h':mDur(x);
+const AUX_T=[['lunch','Lunch','Almuerzo'],['break','Break','Break'],['cafe','Café','Café'],['recreo','Recreo','Recreo'],['bano','Baño','Baño']];
+function auxRows(ds,key){
+  if(key==='lunch')return ds.filter(D=>D.lunchDur).map(D=>({D,sched:D.s.lunch?{a:D.s.lunch[0],b:D.s.lunch[1]}:null,t:D.lunchStart,e:D.lunchEnd,dur:D.lunchDur,lim:Math.round((D.lunchLim||CFG.limits.Almuerzo*60)/60),exc:D.lunchExc||0}));
+  const cat=AUX_T.find(x=>x[0]===key)[2];const out=[];
+  ds.forEach(D=>D.pauses.forEach(p=>{if(p.cat===cat)out.push({D,sched:p.sched,t:p.t,e:p.t+p.dur,dur:p.dur,lim:p.lim,exc:p.exc||0})}));return out}
+function auxSort(r){return r.sort((x,y)=>x.D.date<y.D.date?1:x.D.date>y.D.date?-1:x.D.a.name.localeCompare(y.D.a.name)||x.t-y.t)}
+function auxXls(key,rows){const bano=key==='bano';return [['Fecha','Teleoperador','Cuenta','Auxiliar','Programado','Desde','Hasta','Duración','Límite (min)',bano?'Tiempo sobre 15 min':'Exceso','Estado'],
+  ...rows.map(o=>{const P=o.D.a.p;return [o.D.date,o.D.a.name,ACCTS[o.D.a.acct]?.label||o.D.a.acct,AUX_T.find(x=>x[0]===key)[1],o.sched?tTxt(o.sched.a,P)+'–'+tTxt(o.sched.b,P):'',tTxt(o.t,P,1),tTxt(o.e,P,1),mDur(o.dur),o.lim??'',o.exc>0?mDur(o.exc):'',o.exc>0?(bano?'EXCESO BAÑO (alerta)':'Se pasó'):'OK']})]}
+function vAux(el){
+  const ds=fDays().filter(d=>d.s&&d.evs.length);
+  const all=AUX_T.map(([k,l])=>{const r=auxSort(auxRows(ds,k));return {k,l,r,x:r.filter(o=>o.exc>0)}});
+  const limTxt=k=>k==='lunch'?'60 o 30 min según el horario':k==='bano'?'alerta desde '+CFG.limits['Baño']+' min':(CFG.limits[AUX_T.find(x=>x[0]===k)[2]]||'—')+' min';
+  const card=o=>`<a class="aux-card" href="#aux-${o.k}" data-jump="${o.k}"><span class="l">${o.l}</span><span class="v">${o.x.length}</span><span class="s">${o.k==='bano'?'excesos de baño (solo alerta)':(o.x.length===1?'vez que se pasó':'veces que se pasaron')+(o.x.length?' · +'+tDur(o.x.reduce((t,z)=>t+z.exc,0)):'')}</span><small>${o.r.length} registrados · límite ${limTxt(o.k)}</small></a>`;
+  const table=o=>{const bano=o.k==='bano';
+    return `<div class="card aux-tbl" id="aux-${o.k}"><div class="card-h"><h3><span class="dot" style="background:${pColor(AUX_T.find(x=>x[0]===o.k)[2])};margin-right:8px"></span>${o.l} <span class="dim" style="font-size:13px;font-weight:500">· límite ${limTxt(o.k)}${bano?' · no suma a tardías':''}</span></h3>${dl(()=>({file:'aux_'+slug(o.l)+'_'+fileTag(),sheets:[{name:o.l,rows:auxXls(o.k,o.r)}]}),'Descargar '+o.l)}</div>
+    ${tbl(['Fecha','Teleoperador',{t:'Programado',c:'c'},{t:'Desde',c:'c'},{t:'Hasta',c:'c'},{t:'Duración',c:'c'},{t:'Límite',c:'c'},{t:bano?'Alerta':'¿Se pasó?',c:'c'}],
+      o.r.map(z=>{const P=z.D.a.p;const over=z.exc>0;return `<tr class="click${over?' row-bad':''}" data-day="${R.days.indexOf(z.D)}"><td class="mono">${fDate(z.D.date)}</td><td>${agCell(z.D.a)}</td><td class="c">${z.sched?tRange(z.sched.a,z.sched.b,P):'<span class="dim">—</span>'}</td><td class="c">${tHtml(z.t,P,1)}</td><td class="c">${tHtml(z.e,P,1)}</td><td class="c mono">${over?`<b class="bad">${mDur(z.dur)}</b>`:mDur(z.dur)}</td><td class="c">${z.lim!=null&&z.lim!==''?z.lim+' min':'—'}</td><td class="c">${over?(bano?pill('bad','⚠ Exceso baño +'+mDur(z.exc)):pill('bad','Se pasó +'+mDur(z.exc))):pill('ok','OK')}</td></tr>`}),{empty:'Sin '+o.l.toLowerCase()+' en el rango y agentes filtrados'})}</div>`};
+  el.innerHTML=toolbar('Auxiliares',`Del ${rangeTxt()}. Una tabla por auxiliar con los teleoperadores filtrados arriba (agente o cuenta). En rojo cuando se pasa del tiempo: Lunch según su horario (60 o 30 min), Break ${CFG.limits.Break} min, Café ${CFG.limits['Café']} min, Recreo ${CFG.limits.Recreo} min. Baño no tiene límite: si pasa de ${CFG.limits['Baño']} min sale <b class="bad">Exceso baño</b> como alerta y no suma a tardías.`,
+    dl(()=>({file:'auxiliares_'+fileTag(),sheets:all.map(o=>({name:o.l,rows:auxXls(o.k,o.r)}))}),'Descargar todas'))+
+    `<div class="aux-cards">${all.map(card).join('')}</div>`+all.map(table).join('');
+  el.querySelectorAll('[data-jump]').forEach(b=>b.onclick=e=>{e.preventDefault();const t=el.querySelector('#aux-'+b.dataset.jump);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
+  bindDays(el);
+}
 /* ---------- pestañas agrupadas ---------- */
 let PZ=store.get('ctrlcx.pz','almuerzo'),AD=store.get('ctrlcx.ad','alertas');
 function segBar(cur,items,key,set){return `<div class="seg seg-lg" role="tablist">${items.map(([k,l])=>`<button type="button" data-sub="${k}" aria-pressed="${cur===k}">${l}</button>`).join('')}</div>`}
@@ -1066,43 +1167,93 @@ function vFestivos(el){
   const sel=d=>(!f.Mo||f.Mo.includes(d.slice(0,7)))&&(!f.Wk||f.Wk.includes(mondayOf(d)))&&(!f.D||f.D.includes(d));
   let fd=FEST_ALL?all.filter(sel):all.filter(d=>d>=sMinS&&d<=sMaxS&&sel(d));const showAll=FEST_ALL;
   const ps=PEOPLE.filter(p=>(!f.A?true:f.A.includes(p.key))&&(!f.C||f.C.includes(p.acct)));
-  const st=(p,d)=>{if(d>sMaxS||d<sMinS)return 'NA';const s=M.sched[p.key+'|'+d];return s?'LAB':'NL'};
+  const st=(p,d)=>{if(!festApplies(p,d))return 'NO';if(d>sMaxS||d<sMinS)return 'NA';const s=M.sched[p.key+'|'+d];return s?'LAB':'NL'};
   const conn=(p,d)=>{const a=M.agents.find(x=>x.p===p);return a&&a.login?M.events.some(e=>e.login===a.login&&e.date===d):false};
   let lab=0,nl=0;ps.forEach(p=>fd.forEach(d=>{const v=st(p,d);if(v==='LAB')lab++;else if(v==='NL')nl++}));
   const cell=(p,d)=>{const v=st(p,d);const c=conn(p,d);const nov=novCode(p,d);
+    if(v==='NO')return `<td class="fx no" title="${esc(p.name+' · '+fDate(d)+' · no es festivo en '+(p.tz==='CR'?'Costa Rica':'Colombia'))}">N/A</td>`;
     if(v==='NA')return `<td class="fx na" title="${esc(p.name+' · '+fDate(d)+' · sin horario cargado para esa fecha')}">—</td>`;
     return `<td class="fx ${v==='LAB'?'lab':'nl'}" title="${esc(p.name+' · '+fDate(d)+' · '+(v==='LAB'?'Laborado (tiene horario)':'No laborado (sin horario)')+(c?' · con conexión ese día':'')+(nov?' · '+nov.t:''))}"><b>${v}</b>${c?'<small>con conexión</small>':nov?`<small>${esc(nov.c)}</small>`:''}</td>`};
-  const rows=()=>[['Agente','Cuenta',...fd.map(d=>d+' '+M.fest[d]),'Laborados','No laborados'],...ps.map(p=>{const r=fd.map(d=>{const v=st(p,d);return v==='NA'?'Sin horario':v==='LAB'?'LAB · Laborado':'NL · No laborado'});return [p.name,ACCTS[p.acct]?.label||p.acct,...r,r.filter(x=>x.startsWith('LAB')).length,r.filter(x=>x.startsWith('NL')).length]})];
-  el.innerHTML=toolbar('Festivos',`${showAll?'Todos los festivos de la pestaña Festivos del documento. ':'Festivos del periodo con horarios cargados ('+fDate(sMinS)+' al '+fDate(sMaxS)+' '+sMaxS.slice(0,4)+'). '}Si el agente tiene horario ese día es <b>laborado</b>; si no tiene horario, <b>no laborado</b>. Las fechas sin horarios cargados todavía salen en gris.`,`<div class="seg"><button type="button" data-fa="0" aria-pressed="${!FEST_ALL}">Con horarios</button><button type="button" data-fa="1" aria-pressed="${FEST_ALL}">Todos los del año</button></div>`+dl(()=>({file:'festivos_'+fileTag(),sheets:[{name:'Festivos',rows:rows()}]})))+
+  const rows=()=>[['Agente','Cuenta',...fd.map(d=>d+' '+M.fest[d]),'Laborados','No laborados'],...ps.map(p=>{const r=fd.map(d=>{const v=st(p,d);return v==='NO'?'No aplica':v==='NA'?'Sin horario':v==='LAB'?'LAB · Laborado':'NL · No laborado'});return [p.name,ACCTS[p.acct]?.label||p.acct,...r,r.filter(x=>x.startsWith('LAB')).length,r.filter(x=>x.startsWith('NL')).length]})];
+  el.innerHTML=toolbar('Festivos',`${showAll?'Todos los festivos de la pestaña Festivos del documento. ':'Festivos del periodo con horarios cargados ('+fDate(sMinS)+' al '+fDate(sMaxS)+' '+sMaxS.slice(0,4)+'). '}Festivos de Colombia (CO) y Costa Rica (CR): a cada agente se le aplican los de su país según su zona horaria. Si tiene horario ese día es <b>laborado</b>; si no, <b>no laborado</b>. Las fechas sin horarios cargados todavía salen en gris.`,`<div class="seg"><button type="button" data-fa="0" aria-pressed="${!FEST_ALL}">Con horarios</button><button type="button" data-fa="1" aria-pressed="${FEST_ALL}">Todos los del año</button></div>`+dl(()=>({file:'festivos_'+fileTag(),sheets:[{name:'Festivos',rows:rows()}]})))+
   `<div class="kpis"><div class="kpi acc"><span class="l">Festivos</span><span class="v">${fd.length}</span><span class="s">${showAll?'en el documento':'en el periodo'}</span></div>
    <div class="kpi ok"><span class="l">Laborados</span><span class="v">${lab}</span><span class="s">agente-festivo con horario</span></div>
    <div class="kpi warn"><span class="l">No laborados</span><span class="v">${nl}</span><span class="s">agente-festivo sin horario</span></div></div>
-  <div class="card"><div class="card-h"><h3>Tablero de festivos por teleoperador</h3><div class="legend"><span><i style="background:var(--ok)"></i><b>LAB</b> Laborado</span><span><i style="background:#e9b10f"></i><b>NL</b> No laborado</span><span><i style="background:var(--surface-2)"></i>— Sin horario cargado</span></div></div>
-   ${fd.length?`<div class="tbl-wrap"><table class="fest"><thead><tr><th style="text-align:left">Teleoperador</th>${fd.map(d=>`<th><span class="fd">${WD_SHORT[wday(d)]} ${+d.slice(8)} ${MON_SHORT[+d.slice(5,7)]}</span><span class="fn">${esc(M.fest[d])}</span></th>`).join('')}<th>LAB</th><th>NL</th></tr></thead>
+  <div class="card"><div class="card-h"><h3>Tablero de festivos por teleoperador</h3><div class="legend"><span><i style="background:var(--ok)"></i><b>LAB</b> Laborado</span><span><i style="background:#e9b10f"></i><b>NL</b> No laborado</span><span><i style="background:var(--surface-2)"></i>— Sin horario cargado</span><span><i style="background:transparent;border:1px dashed var(--muted)"></i>N/A No es festivo en su país</span></div></div>
+   ${fd.length?`<div class="tbl-wrap"><table class="fest"><thead><tr><th style="text-align:left">Teleoperador</th>${fd.map(d=>`<th><span class="fd">${WD_SHORT[wday(d)]} ${+d.slice(8)} ${MON_SHORT[+d.slice(5,7)]}</span><span class="fn">${esc(M.fest[d])}</span>${festCountries(d)?`<span class="fc">${festCountries(d)}</span>`:''}</th>`).join('')}<th>LAB</th><th>NL</th></tr></thead>
     <tbody>${ps.map(p=>{let a=0,b=0;fd.forEach(d=>{const v=st(p,d);if(v==='LAB')a++;else if(v==='NL')b++});return `<tr><td>${agCell({name:p.name,color:p.color})}<span class="tz">${esc(ACCTS[p.acct]?.label||p.acct)}</span></td>${fd.map(d=>cell(p,d)).join('')}<td class="c"><span class="pill ok">${a}</span></td><td class="c"><span class="pill warn">${b}</span></td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty">No hay festivos en el periodo. Usa “Todos los del año” para verlos todos.</div>'}</div>`;
   el.querySelectorAll('[data-fa]').forEach(b=>b.onclick=()=>{FEST_ALL=b.dataset.fa==='1';render()});
 }
 /* ---------- Configuración ---------- */
+/* ---------- Configuración: tablero de tiempos permitidos ---------- */
+let CV=store.get('ctrlcx.cv','semana');
+const CV_COLS=[['lunch','Lunch','Almuerzo'],['break','Break','Break'],['cafe','Café','Café'],['recreo','Recreo','Recreo'],['bano','Baño','Baño']];
+function cvMode(){const f=F();if(f.Wk)return 'semana';if(f.Mo&&!f.D)return 'mes';return CV}
+function cvCell(ds,k,cat){
+  if(k==='lunch'){const has=ds.some(D=>D.s&&D.s.lunch);const u=ds.filter(D=>D.lunchDur);if(!has&&!u.length)return {na:true};
+    const x=u.filter(D=>D.lunchExc>=60);return {n:u.length,tot:u.reduce((t,D)=>t+D.lunchDur,0),xn:x.length,xs:x.reduce((t,D)=>t+cvMin(D.lunchExc),0),lim:[...new Set(u.map(D=>Math.round((D.lunchLim||3600)/60)))].join('/')+' min'}}
+  const P=ds.flatMap(D=>D.pauses.filter(p=>p.cat===cat));
+  const prog=k==='bano'||ds.some(D=>D.s&&(D.s.breaks||[]).some(b=>b.cat===cat||(cat==='Recreo'&&b.cat==='Break')));
+  const x=P.filter(p=>p.exc>=60);
+  return {na:!prog,n:P.length,tot:P.reduce((t,p)=>t+p.dur,0),xn:x.length,xs:x.reduce((t,p)=>t+cvMin(p.exc),0)}}
+const cvMin=x=>Math.floor(x/60)*60;
+function cvRows(){
+  const ds=fDays().filter(d=>d.s&&d.evs.length);const mode=cvMode();
+  const kf=mode==='mes'?d=>d.date.slice(0,7):d=>mondayOf(d.date);
+  const lab=mode==='mes'?k=>moLabel(k).replace(/^./,c=>c.toUpperCase()):k=>'Semana '+(+k.slice(8))+' '+MON_SHORT[+k.slice(5,7)];
+  const sub=mode==='mes'?()=>'' :k=>wkLabel(k);
+  const rows=[];const ags=[...new Set(ds.map(d=>d.a))].sort((a,b)=>a.name.localeCompare(b.name));
+  ags.forEach(a=>{const mine=ds.filter(d=>d.a===a);[...new Set(mine.map(kf))].sort().reverse().forEach(k=>{const dd=mine.filter(d=>kf(d)===k);
+    const c={};CV_COLS.forEach(([key,,cat])=>c[key]=cvCell(dd,key,cat));
+    const al=CV_COLS.filter(([key])=>!c[key].na&&c[key].xs>0).map(([key,l])=>({key,l,s:c[key].xs,n:c[key].xn}));
+    rows.push({a,k,lab:lab(k),sub:sub(k),days:dd.length,c,al})})});
+  return {rows,mode}}
 function vConfig(el){
-  const li=(k,obj,id)=>`<div class="cfg-row"><label for="${id}"><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${pColor(k)};margin-right:6px"></i>${esc(k)}</label><input type="number" min="0" id="${id}" data-l="${esc(k)}" data-o="${obj}" value="${CFG[obj][k]??''}"></div>`;
-  el.innerHTML=`<div><h2>Configuración</h2><p class="note" style="margin:4px 0 0">Se guarda en línea y aplica para todos los que abren el tablero. Deja un límite vacío para que no genere alertas.</p></div>
-  <div class="cfg-grid">
-   <div class="card"><h3>Límites generales (min) · Asofarma y Abox</h3>${['Almuerzo','Café','Break','Recreo','Baño'].map(k=>li(k,'limits','lg_'+k)).join('')}</div>
-   <div class="card"><h3>Haleon · breaks programados (min)</h3>${['Café','Break','Recreo'].map(k=>li(k,'kLimits','lk_'+k)).join('')}<p class="note" style="margin:0">El almuerzo y el baño usan el límite general.</p></div>
-   <div class="card"><h3>Horario</h3>
-    <div class="cfg-row"><label for="tolIn">Tolerancia de entrada (min)</label><input type="number" min="0" id="tolIn" value="${CFG.tolIn}"></div>
-    <div class="cfg-row"><label for="gapMin">Desconexión mayor a (min)</label><input type="number" min="0" id="gapMin" value="${CFG.gapMin}"></div>
-    <div class="cfg-row"><label for="lunchWin">Almuerzo en franja si inicia ± (min)</label><input type="number" min="0" id="lunchWin" value="${CFG.lunchWin}"></div>
-    <div class="cfg-row"><label for="kSat">Kristel · entrada sábado (hora CR)</label><input type="text" id="kSat" style="width:84px" value="${CFG.kSatIn!=null?hm(CFG.kSatIn):M.PP?hm(M.PP.kIn):'07:00'}"></div>
-    <div class="cfg-row"><label for="ringAlert">Alertar timbrados sin respuesta</label><input type="checkbox" id="ringAlert" ${CFG.ringAlert?'checked':''}></div>
-    <p class="note" style="margin:0">Con tolerancia 0, un login a las 8:02 con entrada 8:00 cuenta 2 min tarde. Los segundos no suman: 8:00:59 está a tiempo.</p></div>
-   <div class="card"><h3>Hora del sistema (Conexiu)</h3><div class="cfg-row"><label for="sysOff">La data llega en</label><select id="sysOff"><option value="1" ${CFG.sysOff===1?'selected':''}>Hora Costa Rica (+1 h para Colombia)</option><option value="0" ${CFG.sysOff===0?'selected':''}>Hora Colombia (sin ajuste)</option></select></div><p class="note" style="margin:0">En octubre la data llegó en hora Costa Rica: quien abría a las 8:00 COL aparecía con login 7:00.</p></div>
-   <div class="card"><h3>Usuario de la data ↔ persona</h3>${M.agents.filter(a=>a.login).map(a=>`<div class="cfg-row" style="flex-wrap:wrap"><label for="map_${esc(a.login)}" class="mono" style="font-size:12px;word-break:break-all;min-width:0;flex:1">${esc(a.login)}</label><select id="map_${esc(a.login)}" data-map="${esc(a.login)}"><option value="">— Sin persona —</option>${PEOPLE.map(p=>`<option value="${p.key}" ${a.p===p?'selected':''}>${esc(p.name)}</option>`).join('')}</select></div>`).join('')||'<p class="note">Aparece cuando subas la data.</p>'}</div>
+  const {rows,mode}=cvRows();const L=CFG.limits;
+  const allAl=rows.flatMap(r=>r.al.map(x=>({...x,r})));
+  const nonB=allAl.filter(x=>x.key!=='bano');const ban=allAl.filter(x=>x.key==='bano');
+  const agN=new Set(rows.map(r=>r.a.key)).size;
+  const alertTxt=x=>x.key==='bano'?`Exceso baño ${mDur(x.s)}`:`Se pasó en ${x.l} ${mDur(x.s)}`;
+  const cell=(o,key)=>{if(o.na)return `<td class="c"><span class="cv-na">No corresponde</span></td>`;
+    if(!o.n)return `<td class="c"><span class="dim">Sin registro</span></td>`;
+    const bad=o.xs>0;return `<td class="c cv-cell${bad?' bad-cell':''}"><b class="mono">${tDur(o.tot)}</b><small>${o.n} ${o.n===1?'vez':'veces'}${key==='lunch'?' · '+o.lim:''}</small>${bad?`<span class="pill bad">${key==='bano'?'⚠ ':''}+${mDur(o.xs)}${o.xn>1?' ('+o.xn+')':''}</span>`:`<span class="pill ok">OK</span>`}</td>`};
+  const ticker=allAl.length?allAl.slice(0,40).map(x=>`<span class="tk-it ${x.key==='bano'?'warn':''}"><i style="background:${x.r.a.color}"></i><b>${esc(x.r.a.name.split(' ').slice(0,2).join(' '))}</b> · ${esc(x.r.lab)} · ${alertTxt(x)}</span>`).join(''):`<span class="tk-it ok">✓ Nadie se pasó de tiempo en el periodo filtrado</span>`;
+  const legend=[['Lunch','Almuerzo','60 o 30 min según su horario'],['Break','Break',L.Break+' min'],['Café','Café',L['Café']+' min'],['Recreo','Recreo',L.Recreo+' min'],['Baño','Baño','alerta desde '+L['Baño']+' min · no suma']];
+  const xls=()=>[[mode==='mes'?'Mes':'Semana (lun–dom)','Teleoperador','Cuenta','Días',...CV_COLS.flatMap(([,l])=>[l+' total',l+' veces',l+' exceso']),'Alertas'],
+    ...rows.map(r=>[r.lab+(r.sub?' ('+r.sub+')':''),r.a.name,ACCTS[r.a.acct]?.label||r.a.acct,r.days,...CV_COLS.flatMap(([key])=>{const o=r.c[key];return o.na?['No corresponde','','']:[tDur(o.tot),o.n,o.xs?mDur(o.xs):'']}),r.al.map(alertTxt).join('; ')||'Sin alertas'])];
+  el.innerHTML=`<div class="cv-hero"><div><h2 class="cv-title">Tablero de tiempos permitidos</h2><p class="note" style="margin:6px 0 0">Del ${rangeTxt()}. Resumen ${mode==='mes'?'por mes':'por semana (lunes a domingo)'} de cada teleoperador filtrado arriba. Si filtras por mes se agrupa por mes; si eliges semanas, por semana. La alerta sale desde 1 minuto completo de más (los segundos no cuentan).</p></div>
+    <div class="cv-legend">${legend.map(([l,c,t],i)=>`<span class="cv-chip" style="--d:${i*80}ms"><i style="background:${pColor(c)}"></i><b>${l}</b> ${t}</span>`).join('')}<span class="cv-chip" style="--d:400ms"><span class="cv-na">No corresponde</span> no tiene ese auxiliar en Horarios</span></div></div>
+  <div class="ticker" aria-label="Alertas"><div class="tk-track">${ticker}${allAl.length?ticker:''}</div></div>
+  <div class="kpis">
+    <div class="kpi acc"><span class="l">Teleoperadores</span><span class="v">${agN}</span><span class="s">${rows.length} ${mode==='mes'?'meses':'semanas'} revisadas</span></div>
+    <div class="kpi ${nonB.length?'crit':'ok'}"><span class="l">Se pasaron de tiempo</span><span class="v">${nonB.length}</span><span class="s">en lunch, break, café o recreo</span></div>
+    <div class="kpi ${nonB.length?'crit':'ok'}"><span class="l">Tiempo excedido</span><span class="v">${hDur(nonB.reduce((t,x)=>t+x.s,0))}</span><span class="s">suma a tardías</span></div>
+    <div class="kpi ${ban.length?'warn':'ok'}"><span class="l">Exceso baño</span><span class="v">${ban.length}</span><span class="s">solo alerta, no suma</span></div>
   </div>
-  <div class="toolbar"><button class="primary" type="button" id="cfgSave">Aplicar y recalcular</button><button type="button" id="cfgReset">Restaurar valores por defecto</button></div>`;
+  <div class="card"><div class="card-h"><h3>Resumen ${mode==='mes'?'por mes':'por semana'}</h3><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><div class="seg"><button type="button" data-cv="semana" aria-pressed="${mode==='semana'}">Por semana</button><button type="button" data-cv="mes" aria-pressed="${mode==='mes'}">Por mes</button></div>${dl(()=>({file:'resumen_auxiliares_'+mode+'_'+fileTag(),sheets:[{name:'Resumen '+mode,rows:xls()}]}))}</div></div>
+   <div class="tbl-wrap cv-wrap"><table class="cv-tbl"><thead><tr><th>Teleoperador</th><th>${mode==='mes'?'Mes':'Semana'}</th>${CV_COLS.map(([,l,c])=>`<th class="c"><i class="cv-dot" style="background:${pColor(c)}"></i>${l}</th>`).join('')}<th>Alerta</th></tr></thead>
+   <tbody>${rows.map((r,i)=>`<tr style="--i:${Math.min(i,30)}" class="${r.al.length?'has-al':''}"><td>${agCell(r.a)}<span class="tz">${esc(ACCTS[r.a.acct]?.label||r.a.acct)}</span></td><td><b>${esc(r.lab)}</b>${r.sub?`<span class="tz">${esc(r.sub)} · ${r.days} día${r.days===1?'':'s'}</span>`:`<span class="tz">${r.days} días</span>`}</td>${CV_COLS.map(([key])=>cell(r.c[key],key)).join('')}<td class="cv-al">${r.al.length?r.al.map(x=>`<span class="pill ${x.key==='bano'?'warn':'bad'} blink">⚠ Alerta: ${alertTxt(x)}</span>`).join(''):pill('ok','✓ Sin alertas')}</td></tr>`).join('')||`<tr><td colspan="8"><div class="empty">Sin datos para los filtros elegidos</div></td></tr>`}</tbody></table></div></div>
+  <details class="card cv-edit"><summary style="cursor:pointer;font-weight:700">Editar tiempos permitidos y ajustes <span class="dim" style="font-weight:400">(solo si cambian las reglas)</span></summary><div id="cfgBox" style="margin-top:12px"></div></details>`;
+  el.querySelectorAll('[data-cv]').forEach(b=>b.onclick=()=>{CV=b.dataset.cv;store.set('ctrlcx.cv',CV);if(F().Wk&&CV==='mes'){}render()});
+  cfgForm(el.querySelector('#cfgBox'));
+}
+function cfgForm(el){
+  const li=(k,obj,id)=>`<div class="cfg-row"><label for="${id}"><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${pColor(k)};margin-right:6px"></i>${esc(k)}</label><input type="number" min="0" id="${id}" data-l="${esc(k)}" data-o="${obj}" value="${CFG[obj][k]??''}"></div>`;
+  el.innerHTML=`<div><p class="note" style="margin:0 0 10px"><b>No tienes que hacer nada aquí.</b> Ya está con tus reglas. Solo entra si un día cambian los tiempos permitidos o si un usuario de la data no aparece con su nombre.</p></div>
+  <div class="cfg-grid">
+   <div class="card"><h3>Tiempos permitidos (minutos)</h3>${['Break','Café','Recreo'].map(k=>li(k,'limits','lg_'+k)).join('')}${li('Baño','limits','lg_Baño').replace('>Baño<','>Baño · alerta desde<')}<p class="note" style="margin:0">Si un auxiliar dura más, sale en rojo en <b>Auxiliares</b> y el exceso suma a tardías. El <b>Lunch</b> toma el tiempo de cada agente en Horarios (60 o 30 min). El <b>Baño</b> solo marca “Exceso baño”, no suma.</p></div>
+   <div class="card"><h3>Llegadas y desconexiones</h3>
+    <div class="cfg-row"><label for="tolIn">Minutos de gracia al entrar</label><input type="number" min="0" id="tolIn" value="${CFG.tolIn}"></div>
+    <div class="cfg-row"><label for="gapMin">Contar desconexión si pasa de (min)</label><input type="number" min="0" id="gapMin" value="${CFG.gapMin}"></div>
+    <div class="cfg-row"><label for="lunchWin">Lunch “en su hora” si empieza ± (min)</label><input type="number" min="0" id="lunchWin" value="${CFG.lunchWin}"></div>
+    <div class="cfg-row"><label for="ringAlert">Avisar timbrados sin contestar</label><input type="checkbox" id="ringAlert" ${CFG.ringAlert?'checked':''}></div>
+    <p class="note" style="margin:0">Con 0 de gracia: entrada 8:00 y login 8:02 = 2 min tarde. Los segundos no cuentan.</p></div>
+   <div class="card"><h3>Hora de la data de Conexiu</h3><div class="cfg-row"><label for="sysOff">La pestaña Conexiones viene en</label><select id="sysOff"><option value="1" ${CFG.sysOff===1?'selected':''}>Hora Costa Rica</option><option value="0" ${CFG.sysOff===0?'selected':''}>Hora Colombia</option></select></div><p class="note" style="margin:0">Déjalo en Costa Rica. Así un agente de Colombia que entra a las 8:00 aparece en la data a las 7:00 y queda a tiempo.</p></div>
+   <details class="card cfg-map"><summary style="cursor:pointer;font-weight:700">Usuario de la data → agente <span class="dim" style="font-weight:400">(${M.agents.filter(a=>a.login).length} usuarios · abrir solo si un correo no quedó unido a su nombre)</span></summary><div style="max-height:420px;overflow:auto;margin-top:10px">${M.agents.filter(a=>a.login).map(a=>`<div class="cfg-row" style="flex-wrap:wrap"><label for="map_${esc(a.login)}" class="mono" style="font-size:12px;word-break:break-all;min-width:0;flex:1">${esc(a.login)}</label><select id="map_${esc(a.login)}" data-map="${esc(a.login)}"><option value="">— Sin persona —</option>${PEOPLE.map(p=>`<option value="${p.key}" ${a.p===p?'selected':''}>${esc(p.name)}</option>`).join('')}</select></div>`).join('')||'<p class="note">Aparece cuando subas la data.</p>'}</div></details>
+  </div>
+  <div class="toolbar"><button class="primary" type="button" id="cfgSave">Guardar y recalcular</button><button type="button" id="cfgReset">Volver a los valores iniciales</button></div>`;
   $('#cfgSave').onclick=()=>{el.querySelectorAll('[data-l]').forEach(i=>{const v=i.value.trim();CFG[i.dataset.o][i.dataset.l]=v===''?'':Math.max(0,+v)});
     CFG.tolIn=Math.max(0,+$('#tolIn').value||0);CFG.gapMin=Math.max(0,+$('#gapMin').value||0);CFG.lunchWin=Math.max(0,+$('#lunchWin').value||0);CFG.ringAlert=$('#ringAlert').checked;CFG.sysOff=+$('#sysOff').value;
-    const ks=timeSec($('#kSat').value);CFG.kSatIn=ks;
     el.querySelectorAll('[data-map]').forEach(s=>{const a=agentBy(s.dataset.map);const v=s.value||'';if((a.auto?a.auto.key:'')!==v)MAP_OVR[a.login]=v;else delete MAP_OVR[a.login]});
     saveCfg();store.set('ctrlcx.map.v2',MAP_OVR);reload(M.raw);toast('Configuración aplicada')};
   $('#cfgReset').onclick=()=>{CFG=JSON.parse(JSON.stringify(CFG_DEFAULT));MAP_OVR={};saveCfg();store.set('ctrlcx.map.v2',{});reload(M.raw);toast('Valores por defecto restaurados')};
@@ -1267,8 +1418,8 @@ async function cloud(){
   try{const u=await claude.use('user');CAN_WRITE=u?(await u.canEdit())===true:!!AS}catch(e){CAN_WRITE=!!AS}
   if(AS&&CAN_WRITE)$('#btnLoad').textContent='Actualizar datos (subir Excel)';
   setSync('busy','Buscando la última versión de los datos…');
-  DB.doc('config/settings2').onSnapshot(snap=>{if(!snap.exists)return;const d=snap.data()||{};
-    if(d.cfg){const c=JSON.parse(JSON.stringify(d.cfg));CFG=Object.assign({},CFG_DEFAULT,c);CFG.limits=Object.assign({},CFG_DEFAULT.limits,c.limits||{});CFG.kLimits=Object.assign({},CFG_DEFAULT.kLimits,c.kLimits||{});store.set('ctrlcx.cfg.v2',CFG)}
+  DB.doc('config/settings3').onSnapshot(snap=>{if(!snap.exists)return;const d=snap.data()||{};
+    if(d.cfg){const c=JSON.parse(JSON.stringify(d.cfg));CFG=Object.assign({},CFG_DEFAULT,c);CFG.limits=Object.assign({},CFG_DEFAULT.limits,c.limits||{});CFG.kLimits=Object.assign({},CFG_DEFAULT.kLimits,c.kLimits||{});store.set('ctrlcx.cfg.v3',CFG)}
     MAP_OVR=Object.assign({},d.map||{});store.set('ctrlcx.map.v2',MAP_OVR);reload(M.raw)},()=>{});
   DB.doc('config/plantilla2').onSnapshot(async snap=>{
     if(!snap.exists){setSync('live');return}
